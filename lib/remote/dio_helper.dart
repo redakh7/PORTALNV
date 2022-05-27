@@ -43,12 +43,10 @@ class DioHelper {
   }
   static Future<Response> postDataLogin({
     required url,
-
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
   }) async {
     dio.options.headers = {
-
       'Content-Type': 'application/x-www-form-urlencoded',
     };
     return dio.post(

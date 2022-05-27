@@ -8,8 +8,20 @@ void post({required String title, required String message}) {
     data: {
       'title': title,
       'message': message,
-      'token' : "cJA56PENSPCFMfdgLGOP4E:APA91bEC7EDJNhF239vKQwTFZUJmaeXBMfFKW4agUAzkmrHciwuocoj2cT23uVSG8BCyD9lvNC1LThglz0awdtZicHKC3c6GGy8XrH9Rb3uv2BYqpmdkOfFt6qMaAvPW7TKJc-Ydbkvh",
+      'token' : "ej5SkcQnQm-SxhTBnPItht:APA91bEA5xQov13z-jSeFXd-FwAS5mnb2vs_Truf00nvR1KgNecc16UXNfefc3CXNuHoBP9mVjrL_-JpTlYMUgk_sfhyqGjrrS_Ub5DchD2BtTC0AGnlA8yw0XY0UByczq0A5fDJKE5S",
     },
+  ).then((value) {
+    print(value.data);
+
+  }).catchError((error) {
+    print(error.toString());
+
+  });
+}
+
+void get (){
+  DioHelper.getData(
+      url:"registration/all_users",
   ).then((value) {
     print(value.data);
 
