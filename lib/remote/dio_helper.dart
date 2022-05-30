@@ -4,7 +4,7 @@ class DioHelper {
   static late Dio dio;
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'http://3.217.215.70:8081/hps-login/',
+      baseUrl: 'http://3.217.215.70:8081/',
       receiveDataWhenStatusError: true,
     ));
   }

@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+ List<String> list=[];
     return BlocConsumer<AppCubit,AppStates>( listener: (context, state) {}
     ,builder: (context,state)=>Scaffold(
           appBar:  AppBar(
@@ -81,7 +82,9 @@ class _HomePageState extends State<HomePage> {
                           if (_formkey.currentState!.validate())
                            print(_titleController.text);
                           print(_messageController.text);
-                          post(title: _titleController.text, message: _messageController.text);},
+                        //post(title: _titleController.text, message: _messageController.text);
+                          AppCubit.get(context).sendNotification(title: _titleController.text, message: _messageController.text);
+                        },
 
                       )
                     ],
@@ -95,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                     const   SizedBox(height: 10,),
-                      const Text(
+                     const  Text(
                         'Choose Users',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -112,7 +115,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: CheckboxGroup(
                               labels: AppCubit.get(context).users,
-                                onSelected: (List<String> checked) => print(checked.toString())
+                                onSelected: (list){
+
+                                AppCubit.get(context).checked = list;
+                                print(AppCubit.get(context).checked);
+                                }
                             ),
                           ),
                         ),
