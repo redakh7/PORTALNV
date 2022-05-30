@@ -4,7 +4,7 @@ class DioHelper {
   static late Dio dio;
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: 'http://3.217.215.70:8081/hps-login/',
+      baseUrl: 'http://3.217.215.70:8081/',
       receiveDataWhenStatusError: true,
     ));
   }
@@ -33,7 +33,7 @@ class DioHelper {
 
       'Content-Type': 'application/json',
       "Access-Control_Allow_Origin": "*",
-    "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
     };
     return dio.post(
       url,

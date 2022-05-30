@@ -1,7 +1,4 @@
-
-
 import 'package:flutter/material.dart';
-
 Widget checkboxItem({
   required String checkboxtext,
   required bool valueBox,

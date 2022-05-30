@@ -6,6 +6,7 @@ import 'package:mini_hps/cubit/bloc_observer.dart';
 import 'package:mini_hps/home_page.dart';
 import 'package:mini_hps/model/model.dart';
 import 'package:mini_hps/remote/dio_helper.dart';
+import 'package:mini_hps/loginpage.dart';
 
 void main() {
   DioHelper.init();
@@ -23,6 +24,13 @@ class MyApp extends StatelessWidget{
     return MultiBlocProvider(providers:[
       BlocProvider(create: (context)=>AppCubit()..getUsers())
     ], child: MaterialApp(
+      initialRoute: '/login',
+      routes: {
+
+        '/home': (context) => HomePage(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/login': (context) => LoginPage(),
+      },
       debugShowCheckedModeBanner: false,
       title:"HPS portail",
       theme: ThemeData(
@@ -32,4 +40,5 @@ class MyApp extends StatelessWidget{
 
     ));
   }
+
 }
