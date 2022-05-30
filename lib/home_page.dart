@@ -111,19 +111,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: CheckboxGroup(
-                                labels: const [
-                                  "oubadaalkahf",
-                                  "redakhoudri",
-                                  "oubadaoubada",
-                                  "med oubadaalkahf",
-                                  "redaaredaaaa",
-                                  "saadsaaad",
-                                  "hpsswitch1",
-                                  "hpsswitch2",
-                                  "hpsswitch3",
-
-
-                                ],
+                              labels: AppCubit.get(context).users,
                                 onSelected: (List<String> checked) => print(checked.toString())
                             ),
                           ),

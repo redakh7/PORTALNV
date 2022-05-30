@@ -24,20 +24,7 @@ class UserModel {
 }
 
 class Data {
-  Data({
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.fcmToken,
-    required this.appUserRole,
-    required this.locked,
-    required this.enabled,
-    required this.username,
-    required this.authorities,
-    required this.accountNonExpired,
-    required this.accountNonLocked,
-    required this.credentialsNonExpired,
-  });
+
   late final String email;
   late final String firstName;
   late final String lastName;

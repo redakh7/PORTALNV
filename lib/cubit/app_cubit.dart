@@ -12,6 +12,8 @@ class AppCubit extends Cubit<AppStates>{
   static AppCubit get(context) => BlocProvider.of(context);
 
 late UserModel userModel;
+List<String> users = [];
+
   void getUsers() {
     emit(AppListInitialStates());
     DioHelper.getData(
@@ -20,7 +22,10 @@ late UserModel userModel;
     ).then((value) {
 
       emit(AppListSuccessStates());
-      print(value.data);
+      userModel = UserModel.fromJson(value.data);
+      userModel.data.forEach((element) {
+        users.add(element.username);
+      });
 
     }).catchError((error) {
       print("hiiii");
