@@ -25,9 +25,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
+
     return BlocConsumer<AppCubit,AppStates>( listener: (context, state) {}
 
     ,builder: (context,state)=>Scaffold(
+
           backgroundColor: Color(0xFFf5f5f5),
 
           body:  ListView(
@@ -110,25 +112,38 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     Center(
-                      child: ElevatedButton(
-                        child: Container(
-                          width: 90,
-                            height:40 ,
+                      child: Container(
+                        width: 90,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.deepPurple,
+                              spreadRadius: 10,
+                              blurRadius: 20,
+                            ),
+                          ],
+                        ),
+                        child: ElevatedButton(
+                          child: Container(
+                            width: 90,
+                              height:40 ,
 
-                            child: Center(child: Text(" SEND"))),
-                        onPressed: (){
-                          if (_formkey.currentState!.validate())
-                            print(_titleController.text);
-                          print(_messageController.text);
-                          AppCubit.get(context).sendNotification(title: _titleController.text, message: _messageController.text);
-                        //  post(title: _titleController.text, message: _messageController.text);
+                              child: Center(child: Text(" SEND"))),
+                          onPressed: (){
+                            if (_formkey.currentState!.validate())
+
+                            AppCubit.get(context).sendNotification(title: _titleController.text, message: _messageController.text);
+                           //post(title: _titleController.text, message: _messageController.text);
     }
-                        ,
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.deepPurple,
-                          onPrimary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                          ,
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.deepPurple,
+                            onPrimary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                           ),
                         ),
                       ),
@@ -161,7 +176,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: CheckboxGroup(
                               labels: AppCubit.get(context).users,
-                              onSelected: (List<String> checked) => print(checked.toString())
+                              onSelected: (list){
+
+                                AppCubit.get(context).checked = list;
+                                print(AppCubit.get(context).checked);
+                              }
                           ),
                         ),
                       ),

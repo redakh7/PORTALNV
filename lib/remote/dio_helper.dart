@@ -30,11 +30,8 @@ class DioHelper {
     required Map<String, dynamic> data,
   }) async {
     dio.options.headers = {
-
       'Content-Type': 'application/json',
-      "Access-Control_Allow_Origin": "*",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, HEAD",
-    };
+       };
     return dio.post(
       url,
       data: data,

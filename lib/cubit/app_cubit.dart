@@ -43,7 +43,7 @@ class AppCubit extends Cubit<AppStates>{
     List<String> usersNotification = [];
 
     checked.forEach((userElement) {
-      userModel?.data?.forEach((fullUserElement) {
+      userModel?.data.forEach((fullUserElement) {
         if(userElement.compareTo(fullUserElement.username)==0)
         {
           usersNotification.add(fullUserElement.fcmToken);
@@ -59,7 +59,7 @@ class AppCubit extends Cubit<AppStates>{
 
     });
 
-  print(usersNotification.toString());
+  print(usersNotification.toString()+"sdsd");
     DioHelper.postData(
       url: "/$NOTIFICATION_SENDER/notification/tokens",
       data: {
