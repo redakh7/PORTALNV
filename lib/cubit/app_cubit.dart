@@ -18,16 +18,18 @@ List<String> users = [];
     emit(AppListInitialStates());
     DioHelper.getData(
       url: "HPS-SWITCH/users",
-
     ).then((value) {
 
-      emit(AppListSuccessStates());
       userModel = UserModel.fromJson(value.data);
+      print("this is hiiiiiiiiiiii");
+      print(userModel);
       userModel.data.forEach((element) {
-        users.add(element.username);
+        users.add(element.firstName);
+
+        print(users);
+        emit(AppListSuccessStates());
       }
       );
-
     }).catchError((error) {
       print("hiiii");
       print(error.toString());
@@ -37,16 +39,14 @@ List<String> users = [];
   List<String> checked = [];
   void sendNotification({required String title,required String message}){
     List<String> usersNotification = [];
-
     checked.forEach((userElement) {
       userModel.data.forEach((fullUserElement) {
-        if(userElement.compareTo(fullUserElement.username)==0)
+        if(userElement.compareTo(fullUserElement.firstName)==0)
         {
           usersNotification.add(fullUserElement.fcmToken);
         }
       });
       usersNotification.forEach((element) {
-
       print(element.toString());
       });
     });
@@ -61,14 +61,9 @@ print(usersNotification);
         'token' : usersNotification
       },
     ).then((value) {
-
 print(value.data);
-
     }).catchError((error) {
       print(error.toString());
-
     });
   }
-
-
 }

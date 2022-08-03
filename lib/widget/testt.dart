@@ -24,7 +24,7 @@ class AppCubit extends Cubit<AppStates>{
       emit(AppListSuccessStates());
       userModel = UserModel.fromJson(value.data);
       userModel.data.forEach((element) {
-        users.add(element.username);
+        users.add(element.phoneNumber);
       });
 
     }).catchError((error) {
@@ -33,7 +33,4 @@ class AppCubit extends Cubit<AppStates>{
       emit(AppListErrorStates());
     });
   }
-
-
-
 }
