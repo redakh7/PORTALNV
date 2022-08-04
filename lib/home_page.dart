@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
 
                   padding: const EdgeInsets.only(left: 10),
-                  child: Menu(),
+
                 ),
               ),
               Body(),
@@ -236,7 +236,6 @@ class Body extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 12,),
                 SizedBox(height: 12,),
                 Container(
                   width: 350,

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "417206612341",
+    "project_id": "portal-44b32",
+    "storage_bucket": "portal-44b32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417206612341:android:f4664d3a4ce481efa6633c",
+        "android_client_info": {
+          "package_name": "com.example.mini_hps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417206612341-f8r2qdqleffssb39mmi7efsqhat9ub02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtwAXiYBFHW_L_6KudfonV2FHJITbMMMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417206612341-f8r2qdqleffssb39mmi7efsqhat9ub02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

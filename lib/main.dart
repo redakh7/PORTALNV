@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_hps/cubit/app_cubit.dart';
 import 'package:mini_hps/cubit/bloc_observer.dart';
+import 'package:mini_hps/home.dart';
 import 'package:mini_hps/home_page.dart';
 import 'package:mini_hps/model/model.dart';
 import 'package:mini_hps/remote/dio_helper.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget{
       initialRoute: '/login',
       routes: {
 
-        '/home': (context) => HomePage(),
+        '/home': (context) => HomeNew(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/login': (context) => LoginPage(),
       },
