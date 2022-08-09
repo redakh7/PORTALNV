@@ -1,25 +1,25 @@
-import 'package:bloc/bloc.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:mini_hps/cubit/app_states.dart';
-import 'package:mini_hps/model/UserModel.dart';
-import 'package:mini_hps/remote/dio_helper.dart';
+  import 'package:bloc/bloc.dart';
 
-class AppCubit extends Cubit<AppStates>{
-  AppCubit() : super(AppInitialStates());
+  import 'package:flutter_bloc/flutter_bloc.dart';
 
-  static AppCubit get(context) => BlocProvider.of(context);
+  import 'package:mini_hps/cubit/app_states.dart';
+  import 'package:mini_hps/model/UserModel.dart';
+  import 'package:mini_hps/remote/dio_helper.dart';
 
-late UserModel userModel;
-List<String> users = [];
+    class AppCubit extends Cubit<AppStates>{
+    AppCubit() : super(AppInitialStates());
 
-  void getUsers() {
+    static AppCubit get(context) => BlocProvider.of(context);
+
+    late UserModel userModel;
+    List<String> users = [];
+    void getUsers() {
     emit(AppListInitialStates());
     DioHelper.getData(
       url: "HPS-SWITCH/users",
     ).then((value) {
-
       userModel = UserModel.fromJson(value.data);
       print("this is hiiiiiiiiiiii");
       print(userModel);

@@ -16,6 +16,7 @@ class DioHelper {
     dio.options.headers = {
 
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     };
     return await dio.get(
       url,
@@ -31,6 +32,7 @@ class DioHelper {
   }) async {
     dio.options.headers = {
       'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
        };
     return dio.post(
       url,
