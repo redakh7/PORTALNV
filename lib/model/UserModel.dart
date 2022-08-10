@@ -14,13 +14,6 @@ class UserModel {
     status = json['status'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.map((e)=>e.toJson()).toList();
-    _data['message'] = message;
-    _data['status'] = status;
-    return _data;
-  }
 }
 
 class Data {
@@ -39,6 +32,7 @@ class Data {
     required this.accountNonLocked,
     required this.credentialsNonExpired,
     required this.solde,
+    required this.gender,
   });
   late final String email;
   late final String cin;
@@ -54,6 +48,7 @@ class Data {
   late final bool accountNonLocked;
   late final bool credentialsNonExpired;
   late final int solde;
+  late final String gender;
 
   Data.fromJson(Map<String, dynamic> json){
     email = json['email'];
@@ -70,26 +65,9 @@ class Data {
     accountNonLocked = json['accountNonLocked'];
     credentialsNonExpired = json['credentialsNonExpired'];
     solde = json['solde'];
+    gender = json['gender'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['email'] = email;
-    _data['cin'] = cin;
-    _data['firstName'] = firstName;
-    _data['lastName'] = lastName;
-    _data['fcm_token'] = fcmToken;
-    _data['appUserRole'] = appUserRole;
-    _data['locked'] = locked;
-    _data['enabled'] = enabled;
-    _data['phoneNumber'] = phoneNumber;
-    _data['authorities'] = authorities.map((e)=>e.toJson()).toList();
-    _data['accountNonExpired'] = accountNonExpired;
-    _data['accountNonLocked'] = accountNonLocked;
-    _data['credentialsNonExpired'] = credentialsNonExpired;
-    _data['solde'] = solde;
-    return _data;
-  }
 }
 
 class Authorities {
@@ -102,9 +80,4 @@ class Authorities {
     authority = json['authority'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['authority'] = authority;
-    return _data;
-  }
 }

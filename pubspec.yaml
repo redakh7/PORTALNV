@@ -58,6 +58,10 @@ dependencies:
   custom_radio_grouped_button: ^2.1.2
   adaptive_navbar: ^0.0.2
   rounded_loading_button: ^2.1.0
+  bs_flutter_alert: ^1.0.1
+  bootstrap_alert: ^1.0.1
+  fluttertoast: ^8.0.9
+  toast: ^0.3.0
 flutter_native_splash:
   background_color:
 

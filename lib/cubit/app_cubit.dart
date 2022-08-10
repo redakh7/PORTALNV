@@ -37,15 +37,43 @@
     });
   }
   List<String> checked = [];
+  List<String> hommeList = [];
+  List<String> femmeList = [];
+    void getuserbygender(String gender){
+      DioHelper.getData(
+        url: "wallet/registration/userbygender?gender=$gender",
+      ).then((value) {
+        print(value.data);
+userModel= UserModel.fromJson(value.data);
+        if(gender.contains("Homme")){
+        userModel.data.forEach((element) {
+          hommeList.add(element.firstName);
+        });
+        }else
+          if(gender.contains("Femme")){
+            userModel.data.forEach((element) {
+              femmeList.add(element.firstName);
+            });
+          }
+      }).catchError((error) {
+        print(error.toString());
+      });
+    }
+
   void sendNotification({required String title,required String message}){
     List<String> usersNotification = [];
+
     checked.forEach((userElement) {
+      print("-----------------");
+      print(checked);
+      print("-----------------");
       userModel.data.forEach((fullUserElement) {
         if(userElement.compareTo(fullUserElement.firstName)==0)
         {
           usersNotification.add(fullUserElement.fcmToken);
         }
       });
+
       usersNotification.forEach((element) {
       print(element.toString());
       });
@@ -62,6 +90,7 @@ print(usersNotification);
       },
     ).then((value) {
 print(value.data);
+checked.clear();
     }).catchError((error) {
       print(error.toString());
     });
