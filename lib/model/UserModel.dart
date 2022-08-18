@@ -48,7 +48,7 @@ class Data {
   late final bool accountNonLocked;
   late final bool credentialsNonExpired;
   late final int solde;
-  late final String gender;
+String? gender;
 
   Data.fromJson(Map<String, dynamic> json){
     email = json['email'];

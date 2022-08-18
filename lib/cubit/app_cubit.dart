@@ -17,14 +17,16 @@
     List<String> users = [];
     void getUsers() {
     emit(AppListInitialStates());
+    print("dkhlat");
     DioHelper.getData(
       url: "HPS-SWITCH/users",
     ).then((value) {
+      print(value.data);
       userModel = UserModel.fromJson(value.data);
       print("this is hiiiiiiiiiiii");
       print(userModel);
       userModel.data.forEach((element) {
-        users.add(element.firstName);
+        users.add(element.firstName+(' ')+element.lastName+(': ')+element.phoneNumber);
 
         print(users);
         emit(AppListSuccessStates());

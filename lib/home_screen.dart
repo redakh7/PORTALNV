@@ -18,7 +18,7 @@ import 'input_field.dart';
 class HomeNew extends StatelessWidget {
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
-  void showalert(){
+  void showalert() {
     BootstrapAlert(
       visible: true,
       status: AlertStatus.success,
@@ -27,6 +27,7 @@ class HomeNew extends StatelessWidget {
       text: 'Success Alert with Icon',
     );
   }
+
   @override
   Widget build(BuildContext context) {
     List listToSearch = [
@@ -143,13 +144,13 @@ class HomeNew extends StatelessWidget {
                               children: <Widget>[
                                 //InputField Widget from the widgets folder
                                 InputField(
-                                  controller: _titleController,
+                                    controller: _titleController,
                                     label: "Notificatiom Title",
                                     content: "exemple"),
                                 SizedBox(height: 20.0),
                                 //InputField Widget from the widgets folder
                                 InputField(
-                                  controller: _messageController,
+                                    controller: _messageController,
                                     label: "Notification content",
                                     content: "exemple"),
                                 SizedBox(height: 10.0),
@@ -189,12 +190,20 @@ class HomeNew extends StatelessWidget {
                                     enableShape: true,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
-                                      Container(
-                                        width:250,
-                                        child: CustomSearchableDropDown(
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                        width:80,child: Text('Select Users ')),
+                                    SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width / 3.7,
+                                      child: CustomSearchableDropDown(
                                           menuMode: true,
                                           primaryColor: Colors.blueGrey,
                                           items: AppCubit.get(context).users,
@@ -202,7 +211,7 @@ class HomeNew extends StatelessWidget {
                                           multiSelectTag: 'Names',
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                               border: Border.all(
                                                   color: Colors.blueGrey)),
                                           multiSelect: true,
@@ -211,36 +220,41 @@ class HomeNew extends StatelessWidget {
                                             child: Icon(Icons.search),
                                           ),
                                           dropDownMenuItems:
-                                          AppCubit.get(context).users,
+                                              AppCubit.get(context).users,
                                           onChanged: (value) {
-                                         //   print(jsonDecode(value));
-                                            if(value!=null)
-                                            {
-                                              Iterable<dynamic> list = jsonDecode(value);
-                                              if(list.isNotEmpty){
-                                                list.toList().forEach((element) {
+                                            //   print(jsonDecode(value));
+                                            if (value != null) {
+                                              Iterable<dynamic> list =
+                                                  jsonDecode(value);
+                                              if (list.isNotEmpty) {
+                                                list
+                                                    .toList()
+                                                    .forEach((element) {
                                                   // print(element);
-                                                  AppCubit.get(context).checked.add(element);
+                                                  AppCubit.get(context)
+                                                      .checked
+                                                      .add(element);
                                                 });
                                               }
                                             }
-
                                             print("-----------");
-                                         //   print(list);
-
-                                              //AppCubit.get(context).checked.addAll(jsonDecode(value));
+                                            //   print(list);
+                                            //AppCubit.get(context).checked.addAll(jsonDecode(value));
                                             //  print(AppCubit.get(context).checked);
-
-                                          }
-                                        ),
-                                      ),
+                                          }),
+                                    ),
+                                  ],
+                                ),
                                 // ...
-
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 95, top: 13),
+                                      const EdgeInsets.only(left: 120, top: 10),
                                   child: ElevatedButton.icon(
-                                    onPressed: () { AppCubit.get(context).sendNotification(title: _titleController.text, message: _messageController.text);},
+                                    onPressed: () {
+                                      AppCubit.get(context).sendNotification(
+                                          title: _titleController.text,
+                                          message: _messageController.text);
+                                    },
                                     icon: const Icon(Icons
                                         .send), //icon data for elevated button
                                     label: Text("SEND"), //la
@@ -250,7 +264,6 @@ class HomeNew extends StatelessWidget {
                                         ), // bel text
                                   ),
                                 ),
-
                                 //Membership Widget from the widgets fold
                               ],
                             ),

@@ -10,7 +10,6 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
@@ -20,11 +19,9 @@ class _LoginPageState extends State<LoginPage> {
     _passwordcontroller.dispose();
     super.dispose();
   }
-
   late String email, password;
   bool _isObscure = true;
   final formKey = new GlobalKey<FormState>();
-
   checkFields() {
     final form = formKey.currentState!;
     if (form.validate()) {
@@ -33,7 +30,6 @@ class _LoginPageState extends State<LoginPage> {
       return false;
     }
   }
-
   String? validateEmail(String value) {
     if (value != null || value.isNotEmpty) {
       final RegExp regex = RegExp(
@@ -46,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
       return 'Enter a valid email';
     }
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

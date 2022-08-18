@@ -11,12 +11,11 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
+      builder: (BuildContext context, BoxConstraints constraints){
         return Row(
           children: <Widget>[
             Container(
               width: 80.0,
-
               child: Text(
                 "$label",
                 textAlign: TextAlign.left,
