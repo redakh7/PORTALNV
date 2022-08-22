@@ -62,6 +62,7 @@ dependencies:
   bootstrap_alert: ^1.0.1
   fluttertoast: ^8.0.9
   toast: ^0.3.0
+  achievement_view: ^1.0.0
 flutter_native_splash:
   background_color:
 

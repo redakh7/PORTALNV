@@ -1,13 +1,16 @@
 import 'dart:convert';
 
+import 'package:achievement_view/achievement_view.dart';
 import 'package:adaptive_navbar/adaptive_navbar.dart';
 import 'package:bootstrap_alert/bootstrap_alert.dart';
+import 'package:bs_flutter_alert/bs_flutter_alert.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:custom_searchable_dropdown/custom_searchable_dropdown.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grouped_buttons_ns/grouped_buttons_ns.dart';
 import 'auth_service.dart';
 
@@ -16,6 +19,9 @@ import 'cubit/app_states.dart';
 import 'input_field.dart';
 
 class HomeNew extends StatelessWidget {
+  void clearText() {
+    _titleController.clear();
+  }
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
   void showalert() {
@@ -222,7 +228,7 @@ class HomeNew extends StatelessWidget {
                                           dropDownMenuItems:
                                               AppCubit.get(context).users,
                                           onChanged: (value) {
-                                            //   print(jsonDecode(value));
+
                                             if (value != null) {
                                               Iterable<dynamic> list =
                                                   jsonDecode(value);
@@ -235,6 +241,8 @@ class HomeNew extends StatelessWidget {
                                                       .checked
                                                       .add(element);
                                                 });
+
+
                                               }
                                             }
                                             print("-----------");
@@ -251,16 +259,22 @@ class HomeNew extends StatelessWidget {
                                       const EdgeInsets.only(left: 120, top: 10),
                                   child: ElevatedButton.icon(
                                     onPressed: () {
+                                      print("${AppCubit.get(context).checked} checked");
+
                                       AppCubit.get(context).sendNotification(
                                           title: _titleController.text,
                                           message: _messageController.text);
+                                      if(_titleController.text.isNotEmpty&&_messageController.text.isNotEmpty){
+                                        show(context);
+                                      };
+                                      _titleController.clear();_messageController.clear();
                                     },
                                     icon: const Icon(Icons
                                         .send), //icon data for elevated button
                                     label: Text("SEND"), //la
                                     style: ElevatedButton.styleFrom(
                                         primary: Colors.blueGrey
-                                        //elevated btton background color
+                                        //elevated button background color
                                         ), // bel text
                                   ),
                                 ),
@@ -275,5 +289,13 @@ class HomeNew extends StatelessWidget {
                 ),
               ),
             ));
+  }
+  void show(BuildContext context) {
+    AchievementView(
+      context,
+      title: "Yeaaah!",
+      subTitle: "notification sent  ",
+      listener: print,
+    ).show();
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bootstrap_alert/bootstrap_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 class _LoginPageState extends State<LoginPage> {
+
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
   @override
@@ -47,6 +50,12 @@ class _LoginPageState extends State<LoginPage> {
     Size size = MediaQuery.of(context).size;
     final RoundedLoadingButtonController _btnController1 =
         RoundedLoadingButtonController();
+    final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
+    void _doSomething() async {
+      Timer(Duration(seconds: 3), () {
+        _btnController.success();
+      });
+    }
     return Scaffold(
       body: Center(
         child: Container(
@@ -156,7 +165,8 @@ class _LoginPageState extends State<LoginPage> {
                                     onPressed: () {
                                       setState(() {
                                         _isObscure = !_isObscure;
-                                      });
+                                      },);
+
                                     },
                                   ),
                                 ),
@@ -181,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                 text: 'Success Alert with Icon',
                               ),*/
                               ValueListenableBuilder<TextEditingValue>(
-                                valueListenable: _emailcontroller,
+                                valueListenable: _passwordcontroller,
                                 builder: (context, value, child) {
                                   return ElevatedButton(
                                     onPressed: value.text.isNotEmpty
@@ -196,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 40.0, vertical: 20.0),
                                       primary: Colors.blueGrey,
-                                      shape: StadiumBorder(),
+                                      shape: const StadiumBorder(),
                                     ),
                                     child: const Text(
                                       "Connect",
@@ -206,6 +216,27 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                                 },
                               ),
+                             /* ValueListenableBuilder<TextEditingValue>(
+                                valueListenable: _passwordcontroller,
+                                builder: (context, value, child) {
+                                  return RoundedLoadingButton(
+                                    onPressed: value.text.isNotEmpty
+                                        ? () {
+                                      if (checkFields()) {
+                                        AuthService()
+                                            .signIn(email, password);
+                                      }
+                                    }
+                                        : null,
+                                    controller: _btnController,
+                                    child: const Text(
+                                      "Connect",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                  );
+                                },
+                              ),*/
 
                             ],
                           ),
@@ -221,4 +252,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
 }

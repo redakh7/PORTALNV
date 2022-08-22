@@ -66,13 +66,14 @@ userModel= UserModel.fromJson(value.data);
     List<String> usersNotification = [];
 
     checked.forEach((userElement) {
-      print("-----------------");
-      print(checked);
-      print("-----------------");
+
       userModel.data.forEach((fullUserElement) {
-        if(userElement.compareTo(fullUserElement.firstName)==0)
+        print(userElement);
+        print(fullUserElement);
+        if(userElement.compareTo(fullUserElement.firstName+" "+fullUserElement.lastName+": "+fullUserElement.phoneNumber)==0)
         {
           usersNotification.add(fullUserElement.fcmToken);
+
         }
       });
 
