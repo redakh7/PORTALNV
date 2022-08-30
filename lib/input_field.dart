@@ -4,9 +4,10 @@ class InputField extends StatelessWidget {
   final String label;
   final String content;
   final TextEditingController controller;
+  final validator;
 
 
-   InputField({required this.label, required this.content,required this.controller});
+   InputField({required this.label, required this.content,required this.controller,required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,8 @@ class InputField extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width / 3.7,
               height: 40,
-              child: TextField(
+              child: TextFormField(
+                validator: validator,
                 controller: controller,
                 style: const TextStyle(
                   color: Colors.black,

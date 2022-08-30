@@ -19,9 +19,11 @@ import 'cubit/app_states.dart';
 import 'input_field.dart';
 
 class HomeNew extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
   void clearText() {
     _titleController.clear();
   }
+
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
   void showalert() {
@@ -51,238 +53,261 @@ class HomeNew extends StatelessWidget {
     final sw = MediaQuery.of(context).size.width;
     return BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
-        builder: (context, state) => Scaffold(
-              appBar: AppBar(
-                leading: Image.asset(
-                  'images/PAYIT.png',
-                ),
-                backgroundColor: Colors.blueGrey,
-                actions: [
-                  Row(
-                    children: [
-                      Text("${user?.email}"),
-                      PopupMenuButton(
-                          // add icon, by default "3 dot" icon
-                          // icon: Icon(Icons.book)
-                          itemBuilder: (context) {
-                        return [
-                          const PopupMenuItem<int>(
-                            value: 0,
-                            child: Text("Logout"),
-                          ),
-                        ];
-                      }, onSelected: (value) {
-                        if (value == 0) {
-                          AuthService().signOut();
-                        }
-                      }),
-                    ],
+        builder: (context, state) => Form(
+              key: _formKey,
+              child: Scaffold(
+                appBar: AppBar(
+                  leading: Image.asset(
+                    'images/PAYIT.png',
                   ),
-                ],
-              ),
-              body: Container(
-                height: 900,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                  backgroundColor: Colors.blueGrey,
+                  actions: [
+                    Row(
+                      children: [
+                        Text("${user?.email}"),
+                        PopupMenuButton(
+                            // add icon, by default "3 dot" icon
+                            // icon: Icon(Icons.book)
+                            itemBuilder: (context) {
+                          return [
+                            const PopupMenuItem<int>(
+                              value: 0,
+                              child: Text("Logout"),
+                            ),
+                          ];
+                        }, onSelected: (value) {
+                          if (value == 0) {
+                            AuthService().signOut();
+                          }
+                        }),
+                      ],
+                    ),
+                  ],
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 38.0, bottom: 38.0, left: 120.0, right: 120.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0)),
-                    elevation: 5.0,
-                    child: Container(
-                      height: 900,
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            width: MediaQuery.of(context).size.width / 3.3,
-                            height: 900,
-                            color: Colors.blueGrey,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 50.0, left: 50.0),
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Image.asset('images/PAYIT.png'),
-                                    ),
-                                    const SizedBox(
-                                      height: 0.0,
-                                    ),
-                                    Container(
-                                      child: const Text(
-                                        "Manage your App Notification",
-                                        style: TextStyle(
-                                          fontSize: 21.0,
-                                          fontWeight: FontWeight.w900,
+                body: Container(
+                  height: 900,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 38.0, bottom: 38.0, left: 120.0, right: 120.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0)),
+                      elevation: 5.0,
+                      child: Container(
+                        height: 900,
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: MediaQuery.of(context).size.width / 3.3,
+                              height: 900,
+                              color: Colors.blueGrey,
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.only(right: 50.0, left: 50.0),
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Image.asset('images/PAYIT.png'),
+                                      ),
+                                      const SizedBox(
+                                        height: 0.0,
+                                      ),
+                                      Container(
+                                        child: const Text(
+                                          "Manage your App Notification",
+                                          style: TextStyle(
+                                            fontSize: 21.0,
+                                            fontWeight: FontWeight.w900,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          top: 5.0, bottom: 5.0),
-                                      child: const Text(
-                                        "It should only take a couple of minutes ",
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                        ),
-                                        textAlign: TextAlign.center,
+                                      const SizedBox(
+                                        height: 5.0,
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 10.0,
-                                    ),
-                                  ],
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            top: 5.0, bottom: 5.0),
+                                        child: const Text(
+                                          "It should only take a couple of minutes ",
+                                          style: TextStyle(
+                                            fontSize: 18.0,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10.0,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: 20.0, right: 70.0, left: 70.0),
-                            child: Column(
-                              children: <Widget>[
-                                //InputField Widget from the widgets folder
-                                InputField(
-                                    controller: _titleController,
-                                    label: "Notificatiom Title",
-                                    content: "exemple"),
-                                SizedBox(height: 20.0),
-                                //InputField Widget from the widgets folder
-                                InputField(
-                                    controller: _messageController,
-                                    label: "Notification content",
-                                    content: "exemple"),
-                                SizedBox(height: 10.0),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 90),
-                                  child: CustomCheckBoxGroup(
-                                    selectedBorderColor: Colors.grey,
-                                    unSelectedBorderColor: Colors.grey,
-                                    buttonTextStyle: const ButtonTextStyle(
-                                      selectedColor: Colors.white,
-                                      unSelectedColor: Colors.black,
-                                      textStyle: TextStyle(
-                                        fontSize: 16,
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: 20.0, right: 70.0, left: 70.0),
+                              child: Column(
+                                children: <Widget>[
+                                  //InputField Widget from the widgets folder
+                                  InputField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return ('title must not be empty');
+                                        }
+                                        return null;
+                                      },
+                                      controller: _titleController,
+                                      label: "Notificatiom Title",
+                                      content: "exemple"),
+                                  SizedBox(height: 20.0),
+                                  //InputField Widget from the widgets folder
+                                  InputField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return ('message must not be empty');
+                                        }
+                                        return null;
+                                      },
+                                      controller: _messageController,
+                                      label: "Notification content",
+                                      content: "exemple"),
+                                  SizedBox(height: 10.0),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 90),
+                                    child: CustomCheckBoxGroup(
+                                      selectedBorderColor: Colors.grey,
+                                      unSelectedBorderColor: Colors.grey,
+                                      buttonTextStyle: const ButtonTextStyle(
+                                        selectedColor: Colors.white,
+                                        unSelectedColor: Colors.black,
+                                        textStyle: TextStyle(
+                                          fontSize: 16,
+                                        ),
                                       ),
+                                      autoWidth: false,
+                                      enableButtonWrap: true,
+                                      wrapAlignment: WrapAlignment.center,
+                                      unSelectedColor:
+                                          Theme.of(context).canvasColor,
+                                      buttonLables: const [
+                                        "Man",
+                                        "Women",
+                                      ],
+                                      buttonValuesList: const [
+                                        "Homme",
+                                        "Femme",
+                                      ],
+                                      checkBoxButtonValues: (values) {
+                                        print(values);
+                                      },
+                                      horizontal: false,
+                                      width: 120,
+                                      // hight: 50,
+                                      selectedColor: Colors.blueGrey,
+                                      padding: 5,
+                                      enableShape: true,
                                     ),
-                                    autoWidth: false,
-                                    enableButtonWrap: true,
-                                    wrapAlignment: WrapAlignment.center,
-                                    unSelectedColor:
-                                        Theme.of(context).canvasColor,
-                                    buttonLables: const [
-                                      "Homme",
-                                      "Femme",
-                                    ],
-                                    buttonValuesList: const [
-                                      "Homme",
-                                      "Femme",
-                                    ],
-                                    checkBoxButtonValues: (values) {
-                                      print(values);
-                                    },
-                                    horizontal: false,
-                                    width: 120,
-                                    // hight: 50,
-                                    selectedColor: Colors.blueGrey,
-                                    padding: 5,
-                                    enableShape: true,
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        width:80,child: Text('Select Users ')),
-                                    SizedBox(
-                                      width: 40.0,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width / 3.7,
-                                      child: CustomSearchableDropDown(
-                                          menuMode: true,
-                                          primaryColor: Colors.blueGrey,
-                                          items: AppCubit.get(context).users,
-                                          label: 'Select Name',
-                                          multiSelectTag: 'Names',
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              border: Border.all(
-                                                  color: Colors.blueGrey)),
-                                          multiSelect: true,
-                                          prefixIcon: const Padding(
-                                            padding: EdgeInsets.all(0.0),
-                                            child: Icon(Icons.search),
-                                          ),
-                                          dropDownMenuItems:
-                                              AppCubit.get(context).users,
-                                          onChanged: (value) {
-
-                                            if (value != null) {
-                                              Iterable<dynamic> list =
-                                                  jsonDecode(value);
-                                              if (list.isNotEmpty) {
-                                                list
-                                                    .toList()
-                                                    .forEach((element) {
-                                                  // print(element);
-                                                  AppCubit.get(context)
-                                                      .checked
-                                                      .add(element);
-                                                });
-
-
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          width: 80,
+                                          child: Text('Select Users ')),
+                                      SizedBox(
+                                        width: 40.0,
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                3.7,
+                                        child: CustomSearchableDropDown(
+                                            menuMode: true,
+                                            primaryColor: Colors.blueGrey,
+                                            items: AppCubit.get(context).users,
+                                            label: 'Select Name',
+                                            multiSelectTag: 'Names',
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                border: Border.all(
+                                                    color: Colors.blueGrey)),
+                                            multiSelect: true,
+                                            prefixIcon: const Padding(
+                                              padding: EdgeInsets.all(0.0),
+                                              child: Icon(Icons.search),
+                                            ),
+                                            dropDownMenuItems:
+                                                AppCubit.get(context).users,
+                                            onChanged: (value) {
+                                              if (value != null) {
+                                                Iterable<dynamic> list =
+                                                    jsonDecode(value);
+                                                if (list.isNotEmpty) {
+                                                  list
+                                                      .toList()
+                                                      .forEach((element) {
+                                                    // print(element);
+                                                    AppCubit.get(context)
+                                                        .checked
+                                                        .add(element);
+                                                  });
+                                                }
                                               }
-                                            }
-                                            print("-----------");
-                                            //   print(list);
-                                            //AppCubit.get(context).checked.addAll(jsonDecode(value));
-                                            //  print(AppCubit.get(context).checked);
-                                          }),
-                                    ),
-                                  ],
-                                ),
-                                // ...
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 120, top: 10),
-                                  child: ElevatedButton.icon(
-                                    onPressed: () {
-                                      print("${AppCubit.get(context).checked} checked");
-
-                                      AppCubit.get(context).sendNotification(
-                                          title: _titleController.text,
-                                          message: _messageController.text);
-                                      if(_titleController.text.isNotEmpty&&_messageController.text.isNotEmpty){
-                                        show(context);
-                                      };
-                                      _titleController.clear();_messageController.clear();
-                                    },
-                                    icon: const Icon(Icons
-                                        .send), //icon data for elevated button
-                                    label: Text("SEND"), //la
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.blueGrey
-                                        //elevated button background color
-                                        ), // bel text
+                                              print("-----------");
+                                              //   print(list);
+                                              //AppCubit.get(context).checked.addAll(jsonDecode(value));
+                                              //  print(AppCubit.get(context).checked);
+                                            }),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                //Membership Widget from the widgets fold
-                              ],
+                                  // ...
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 120, top: 10),
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate() &&
+                                            AppCubit.get(context)
+                                                .checked
+                                                .isEmpty) {
+                                          show2(context);
+                                        } else if (_formKey.currentState!.validate() &&
+                                            AppCubit.get(context)
+                                                .checked
+                                                .isNotEmpty) {
+                                          AppCubit.get(context)
+                                              .sendNotification(
+                                              title: _titleController.text,
+                                              message:
+                                              _messageController.text);
+                                        };
+                                      },
+                                      icon: const Icon(Icons
+                                          .send), //icon data for elevated button
+                                      label: Text("SEND"), //la
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.blueGrey
+                                          //elevated button background color
+                                          ), // bel text
+                                    ),
+                                  ),
+                                  //Membership Widget from the widgets fold
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -290,11 +315,21 @@ class HomeNew extends StatelessWidget {
               ),
             ));
   }
+
   void show(BuildContext context) {
     AchievementView(
       context,
       title: "Yeaaah!",
       subTitle: "notification sent  ",
+      listener: print,
+    ).show();
+  }
+
+  void show2(BuildContext context) {
+    AchievementView(
+      context,
+      title: "OOOPs!",
+      subTitle: "you must choose users",
       listener: print,
     ).show();
   }
